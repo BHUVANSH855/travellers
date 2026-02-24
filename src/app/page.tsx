@@ -23,30 +23,30 @@ export default function HomePage() {
 
         {/* Background world map */}
         <div
-          className="absolute inset-0 bg-cover bg-center"
+          className="absolute inset-0 bg-cover bg-center opacity-10 dark:opacity-30"
           style={{ backgroundImage: "url('/worldMap.png')" }}
         />
 
-        {/* Dark overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/70 to-black/50" />
+        {/* Theme-aware overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/90 to-transparent dark:from-slate-950/90 dark:via-slate-950/80 dark:to-transparent" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 py-28">
           <div className="grid items-center gap-16 md:grid-cols-2">
 
             {/* LEFT SIDE */}
-            <div className="text-white">
+            <div className="text-slate-900 dark:text-white">
 
-              <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1 text-sm text-gray-200 backdrop-blur">
-                <span className="h-2 w-2 rounded-full bg-emerald-400" />
+              <div className="inline-flex items-center gap-2 rounded-full bg-slate-100 dark:bg-white/10 px-4 py-1 text-sm text-slate-600 dark:text-gray-200 backdrop-blur transition-colors duration-300">
+                <span className="h-2 w-2 rounded-full bg-emerald-500" />
                 Now verifying tickets for fall trips
               </div>
 
-              <h1 className="mt-6 text-4xl font-bold leading-tight md:text-6xl">
+              <h1 className="mt-6 text-4xl font-bold leading-tight md:text-6xl transition-colors duration-300">
                 Meet verified travellers. <br />
                 Make real connections.
               </h1>
 
-              <p className="mt-6 text-lg text-gray-300 max-w-xl">
+              <p className="mt-6 text-lg text-slate-600 dark:text-gray-300 max-w-xl transition-colors duration-300">
                 travellersmeet helps solo travellers find others headed to the
                 same city and dates — verified with a real ticket, not just vibes.
               </p>
@@ -54,20 +54,20 @@ export default function HomePage() {
               <div className="mt-10 flex flex-col gap-4 sm:flex-row">
                 <Link
                   href="/signup"
-                  className="inline-flex items-center justify-center rounded-lg bg-emerald-500 px-6 py-3 font-medium text-white shadow hover:bg-emerald-600 transition"
+                  className="inline-flex items-center justify-center rounded-lg bg-emerald-500 px-6 py-3 font-medium text-white shadow hover:bg-emerald-600 transition duration-300"
                 >
                   Get started free <UserPlus className="ml-2 h-4 w-4" />
                 </Link>
 
                 <Link
                   href="#how-it-works"
-                  className="inline-flex items-center justify-center rounded-lg border border-white/40 px-6 py-3 font-medium text-white hover:bg-white/10 transition"
+                  className="inline-flex items-center justify-center rounded-lg border border-slate-200 dark:border-white/40 px-6 py-3 font-medium text-slate-900 dark:text-white hover:bg-slate-50 dark:hover:bg-white/10 transition duration-300"
                 >
                   See how it works
                 </Link>
               </div>
 
-              <p className="mt-4 text-xs text-gray-400">
+              <p className="mt-4 text-xs text-slate-500 dark:text-gray-400 transition-colors duration-300">
                 No spam. Private by default. Cancel anytime.
               </p>
 
