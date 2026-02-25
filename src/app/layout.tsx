@@ -10,7 +10,7 @@ import AuthSessionProvider from "@/components/session-provider";
 import { auth } from "@/lib/auth";
 import { ThemeProvider } from "@/state/theme";
 import { Wrapper } from "@/components/theme-wrapper";
-
+import FloatingActions from "@/components/FloatingActions";
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
@@ -63,9 +63,8 @@ export default async function RootLayout({
 
                 {/* Footer and Utilities */}
                 <SiteFooter />
-                <ScrollToTop />
-                <Chatbot />
-                <PWAProvider />
+                <FloatingActions />
+                  <PWAProvider />
               </div>
             </AuthSessionProvider>
           </Wrapper>

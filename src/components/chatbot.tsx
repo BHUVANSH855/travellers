@@ -104,15 +104,12 @@ export default function Chatbot() {
           setIsOpen(!isOpen);
         }}
         className="
-    fixed bottom-6 right-6 z-50
-    h-14 w-14 rounded-full
-    bg-blue-600 text-white shadow-lg
-    flex items-center justify-center
-    transition-all duration-300
-
-    animate-bounce-slow
-    hover:scale-110
-  "
+h-14 w-14 rounded-full
+bg-blue-600 text-white shadow-lg
+flex items-center justify-center
+transition-all duration-300
+hover:scale-110
+"
       >
         <MessageCircle size={22} />
       </button>
@@ -210,14 +207,7 @@ export default function Chatbot() {
               <button
                 onClick={sendMessage}
                 disabled={loading}
-                className="
-                  bg-blue-600 hover:bg-blue-700
-                  text-white rounded-full px-4 py-1 text-sm font-medium
-                  transition disabled:opacity-50
-                "
-              >
-                Send
-              </button>
+className="h-14 w-14 rounded-full bg-blue-600 text-white shadow-md flex items-center justify-center transition-all duration-300 hover:scale-110">              </button>
             </div>
           </div>
         </div>
