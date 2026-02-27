@@ -22,9 +22,6 @@
 
 .animate-kenburns {
   animation: kenburns 28s ease-in-out infinite alternate;
-}
-
-.animate-kenburns {
   will-change: transform;
   backface-visibility: hidden;
   transform: translateZ(0);
@@ -44,4 +41,39 @@
 
 .animate-bounce-slow {
   animation: bounceSlow 2.5s infinite ease-in-out;
+}
+
+@keyframes floatSlow {
+  0% {
+    transform: translateY(-50%) translateX(0px);
+  }
+
+  50% {
+    transform: translateY(-52%) translateX(-10px);
+  }
+
+  100% {
+    transform: translateY(-50%) translateX(0px);
+  }
+}
+
+@keyframes imagePan {
+  0% {
+    transform: scale(1.12) translateX(0%);
+  }
+
+  50% {
+    transform: scale(1.12) translateX(-6%);
+  }
+
+  100% {
+    transform: scale(1.12) translateX(0%);
+  }
+}
+
+.animate-image-pan {
+  animation: imagePan 8s ease-in-out infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
