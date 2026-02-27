@@ -10,7 +10,7 @@ import AuthSessionProvider from "@/components/session-provider";
 import { auth } from "@/lib/auth";
 import { ThemeProvider } from "@/state/theme";
 import { Wrapper } from "@/components/theme-wrapper";
-
+import FloatingActions from "@/components/FloatingActions";
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
@@ -54,7 +54,7 @@ export default async function RootLayout({
             <AuthSessionProvider session={session}>
               <div className="flex min-h-screen flex-col">
                 {/* Header */}
-                <SiteHeader session={session} />
+                <SiteHeader />
 
                 {/* Main Content */}
                 <main className="flex-1 pt-6 pb-20">
@@ -63,9 +63,8 @@ export default async function RootLayout({
 
                 {/* Footer and Utilities */}
                 <SiteFooter />
-                <ScrollToTop />
-                <Chatbot />
-                <PWAProvider />
+                <FloatingActions />
+                  <PWAProvider />
               </div>
             </AuthSessionProvider>
           </Wrapper>
