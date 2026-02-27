@@ -216,6 +216,57 @@ export default function HomePage() {
         </div>
       </section>
 
-    </main>
+{/* ================= FAQ ================= */}
+<section
+  id="faq"
+  className="mx-auto max-w-4xl px-6 mt-28 mb-28 scroll-mt-20"
+>
+  <div className="text-center">
+    <h2 className="text-3xl font-semibold tracking-tight">
+      Frequently Asked Questions
+    </h2>
+    <p className="mt-3 text-slate-600 dark:text-slate-400">
+      Everything you need to know before joining travellersmeet.
+    </p>
+  </div>
+
+  <div className="mt-12 space-y-4">
+    {[
+      {
+        q: "How do I create a profile?",
+        a: "Simply sign up using your email and password. Once registered, you can upload your ticket to verify your trip.",
+      },
+      {
+        q: "How do I connect with other travellers?",
+        a: "After verification, you’ll see travellers going to the same city on overlapping dates. You can send a connection request to start chatting.",
+      },
+      {
+        q: "Is the platform free to use?",
+        a: "Yes. travellersmeet is currently free to join and use for verified travellers.",
+      },
+      {
+        q: "How is my data protected?",
+        a: "We never sell your data. Ticket details are reviewed securely and sensitive information is not displayed publicly.",
+      },
+    ].map((faq, index) => (
+      <details
+        key={index}
+        className="group rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition dark:border-slate-800 dark:bg-slate-900"
+      >
+        <summary className="cursor-pointer list-none flex justify-between items-center font-medium text-slate-900 dark:text-white">
+          {faq.q}
+          <span className="ml-4 transition-transform group-open:rotate-180">
+            ▼
+          </span>
+        </summary>
+        <p className="mt-4 text-slate-600 dark:text-slate-400">
+          {faq.a}
+        </p>
+      </details>
+    ))}
+  </div>
+</section>
+
+</main>
   );
 }
