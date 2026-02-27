@@ -1,5 +1,5 @@
 "use client";
-
+import { usePathname } from "next/navigation";
 import { useTheme } from "@/state/theme";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -15,6 +15,39 @@ type Props = {
 export default function SiteHeader({ session }: Props) {
   const [open, setOpen] = useState(false);
   const { theme, changeTheme } = useTheme();
+  const pathname = usePathname();
+  const [activeSection, setActiveSection] = useState<string | null>(null);
+  const isRouteActive = (path: string) => pathname === path;
+
+  useEffect(() => {
+    if (pathname !== "/") {
+      setActiveSection(null);
+      return;
+    }
+
+    const sections = ["features", "how-it-works", "testimonials", "faq"];
+
+    const handleScroll = () => {
+      let currentSection: string | null = null;
+
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          if (rect.top <= 150 && rect.bottom >= 150) {
+            currentSection = section;
+          }
+        }
+      }
+
+      setActiveSection(currentSection);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [pathname]);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "auto";
@@ -39,12 +72,66 @@ export default function SiteHeader({ session }: Props) {
         </div>
 
         <nav className="hidden items-center text-sm font-medium text-slate-600 dark:text-slate-300 gap-8 md:flex">
-          <Link href="/#features" className="hover:text-slate-900 dark:hover:text-white transition-colors">Features</Link>
-          <Link href="/#how-it-works" className="hover:text-slate-900 dark:hover:text-white transition-colors">How it works</Link>
-          <Link href="/#testimonials" className="hover:text-slate-900 dark:hover:text-white transition-colors">Stories</Link>
-          <Link href="/#faq" className="hover:text-slate-900 dark:hover:text-white transition-colors">FAQ</Link>
-          <Link href="/upload" className="hover:text-slate-900 dark:hover:text-white transition-colors">Upload</Link>
-          <Link href="/routes" className="hover:text-slate-900 dark:hover:text-white transition-colors">Routes</Link>
+          <Link
+            href="/#features"
+            className={`transition-colors ${
+              activeSection === "features"
+                ? "text-slate-900 dark:text-white font-semibold border-b-2 border-slate-900 dark:border-white"
+                : "hover:text-slate-900 dark:hover:text-white"
+            }`}
+          >
+            Features
+          </Link>
+          <Link
+            href="/#how-it-works"
+            className={`transition-colors ${
+              activeSection === "how-it-works"
+                ? "text-slate-900 dark:text-white font-semibold border-b-2 border-slate-900 dark:border-white"
+                : "hover:text-slate-900 dark:hover:text-white"
+            }`}
+          >
+            How it works
+          </Link>
+          <Link
+            href="/#testimonials"
+            className={`transition-colors ${
+              activeSection === "testimonials"
+                ? "text-slate-900 dark:text-white font-semibold border-b-2 border-slate-900 dark:border-white"
+                : "hover:text-slate-900 dark:hover:text-white"
+            }`}
+          >
+            Stories
+          </Link>
+          <Link
+            href="/#faq"
+            className={`transition-colors ${
+              activeSection === "faq"
+                ? "text-slate-900 dark:text-white font-semibold border-b-2 border-slate-900 dark:border-white"
+                : "hover:text-slate-900 dark:hover:text-white"
+            }`}
+          >
+            FAQ
+          </Link>
+          <Link
+            href="/upload"
+            className={`transition-colors ${
+              isRouteActive("/upload")
+                ? "text-slate-900 dark:text-white font-semibold border-b-2 border-slate-900 dark:border-white"
+                : "hover:text-slate-900 dark:hover:text-white"
+            }`}
+          >
+            Upload
+          </Link>
+          <Link
+            href="/routes"
+            className={`transition-colors ${
+              isRouteActive("/routes")
+                ? "text-slate-900 dark:text-white font-semibold border-b-2 border-slate-900 dark:border-white"
+                : "hover:text-slate-900 dark:hover:text-white"
+            }`}
+          >
+            Routes
+          </Link>
         </nav>
 
         <div className="hidden md:justify-between items-center gap-3 md:flex">
@@ -88,8 +175,28 @@ export default function SiteHeader({ session }: Props) {
                 <Link href="/#how-it-works" className="rounded px-2 py-2 text-slate-800 hover:opacity-80" onClick={() => setOpen(false)}>How it works</Link>
                 <Link href="/#testimonials" className="rounded px-2 py-2 text-slate-800 hover:opacity-80" onClick={() => setOpen(false)}>Stories</Link>
                 <Link href="/#faq" className="rounded px-2 py-2 text-slate-800 hover:opacity-80" onClick={() => setOpen(false)}>FAQ</Link>
-                <Link href="/upload" className="rounded px-2 py-2 text-slate-800 hover:opacity-80" onClick={() => setOpen(false)}>Upload</Link>
-                <Link href="/routes" className="rounded px-2 py-2 text-slate-800 hover:opacity-80" onClick={() => setOpen(false)}>Routes</Link>
+                <Link
+                  href="/upload"
+                  className={`rounded px-2 py-2 ${
+                    isRouteActive("/upload")
+                      ? "bg-slate-100 dark:bg-slate-800 font-semibold"
+                      : "text-slate-800 hover:opacity-80"
+                  }`}
+                  onClick={() => setOpen(false)}
+                >
+                  Upload
+                </Link>
+                  <Link
+                    href="/routes"
+                    className={`rounded px-2 py-2 ${
+                      isRouteActive("/routes")
+                        ? "bg-slate-100 dark:bg-slate-800 font-semibold"
+                        : "text-slate-800 hover:opacity-80"
+                    }`}
+                    onClick={() => setOpen(false)}
+                  >
+                    Routes
+                  </Link>
                 <div className="flex pl-2 pr-8 py-2 justify-between">
                   <p>Dark Theme</p>
                   <Toggle theme={theme} changeTheme={changeTheme} />
