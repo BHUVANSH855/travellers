@@ -198,13 +198,19 @@ export default function SignUpForm() {
                 <div className="space-y-3 mb-6">
 
                   {/* GOOGLE */}
-                  <button className="flex items-center justify-center gap-3 w-full h-[46px] rounded-7 bg-white text-gray-800 font-semibold">
+                  <button 
+                  type="button"
+                  onClick={()=>signIn("google", {callbackUrl:"/dashboard"})}
+                  className="flex items-center justify-center gap-3 w-full h-[46px] rounded-7 bg-white text-gray-800 font-semibold">
                     <GoogleIcon />
                     Continue with Google
                   </button>
 
                   {/* APPLE */}
-                  <button className="flex items-center justify-center gap-3 w-full h-[46px] rounded-7 bg-white text-gray-800 font-semibold">
+                  <button 
+                  type="button"
+                  onClick={()=>signIn("apple", {callbackUrl:"/dashboard"})}
+                  className="flex items-center justify-center gap-3 w-full h-[46px] rounded-7 bg-white text-gray-800 font-semibold">
                     <FaApple size={18} />
                     Continue with Apple
                   </button>

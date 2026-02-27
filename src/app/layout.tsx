@@ -10,7 +10,7 @@ import AuthSessionProvider from "@/components/session-provider";
 import { auth } from "@/lib/auth";
 import { ThemeProvider } from "@/state/theme";
 import { Wrapper } from "@/components/theme-wrapper";
-
+import FloatingActions from "@/components/FloatingActions";
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
@@ -48,14 +48,11 @@ export default async function RootLayout({
 
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${inter.className} bg-white dark:bg-gray-950 dark:text-white transition-colors duration-300`}
-      >
+      <body className={`${inter.className} bg-white dark:bg-gray-950 dark:text-white transition-colors duration-300`}>
         <ThemeProvider>
           <Wrapper>
             <AuthSessionProvider session={session}>
               <div className="flex min-h-screen flex-col">
-
                 {/* Header */}
                 <SiteHeader />
 
@@ -64,14 +61,10 @@ export default async function RootLayout({
                   {children}
                 </main>
 
-                {/* Footer */}
+                {/* Footer and Utilities */}
                 <SiteFooter />
-
-                {/* Utilities */}
-                <ScrollToTop />
-                <Chatbot />
-                <PWAProvider />
-
+                <FloatingActions />
+                  <PWAProvider />
               </div>
             </AuthSessionProvider>
           </Wrapper>
