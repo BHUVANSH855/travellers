@@ -13,12 +13,27 @@ const signupSchema = z.object({
 
 export async function POST(req: NextRequest) {
   try {
-    const form = await req.formData();
-    const result = signupSchema.safeParse({
-      name: form.get("name"),
-      email: form.get("email"),
-      password: form.get("password"),
-    });
+    // Support both multipart/form-data (browser) and application/json (API clients / tests)
+    const contentType = req.headers.get("content-type") ?? "";
+    let rawData: Record<string, unknown>;
+
+    try {
+      if (contentType.includes("application/json")) {
+        rawData = await req.json();
+      } else {
+        const form = await req.formData();
+        rawData = {
+          name: form.get("name"),
+          email: form.get("email"),
+          password: form.get("password"),
+        };
+      }
+    } catch (parseError) {
+      console.error("Signup parse error:", parseError);
+      return NextResponse.json({ error: "Invalid request format" }, { status: 400 });
+    }
+
+    const result = signupSchema.safeParse(rawData);
 
     if (!result.success) {
       return NextResponse.json(
@@ -51,11 +66,18 @@ export async function POST(req: NextRequest) {
     });
 
     // Send OTP email
-    await sendOTPEmail(email, otp);
+    try {
+      await sendOTPEmail(email, otp);
+    } catch (emailError) {
+      console.error("Signup email error (non-fatal):", emailError);
+    }
 
     return NextResponse.json({ ok: true, userId: user.id, message: "OTP sent to your email" });
   } catch (error) {
     console.error("Signup error:", error);
-    return NextResponse.json({ error: "Server error" }, { status: 500 });
+    return NextResponse.json({
+      error: "Server error",
+      message: error instanceof Error ? error.message : "Unknown error"
+    }, { status: 500 });
   }
 }
