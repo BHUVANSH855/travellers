@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Github, Twitter, Instagram, Plane } from "lucide-react";
-
+import { FaLinkedin } from "react-icons/fa";
 export default function SiteFooter() {
   return (
     <footer className="relative overflow-hidden text-slate-800 dark:text-white transition-colors duration-300">
@@ -23,8 +23,7 @@ export default function SiteFooter() {
       </div>
 
       {/* Container */}
-      <div className="relative z-10 max-w-7xl mx-auto px-16 py-16">
-
+      <div className="relative z-20 max-w-7xl mx-auto px-16 py-16">
         {/* Logo + Tagline */}
         <div className="text-center -mt-2 mb-8">
           <div className="flex justify-center items-center gap-3">
@@ -158,21 +157,48 @@ export default function SiteFooter() {
             Made with <span className="text-red-500">❤️</span> by a community with 🛂 passports ready.
           </div>
 
-          <div className="flex gap-8">
+          <div className="relative z-30 flex gap-8 items-center">
             <a
               href="https://github.com/singh-odyssey/travellers"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="GitHub Repository"
+              className="hover:scale-110 transition-transform duration-200"
             >
-              <Github className="text-slate-600 dark:text-white hover:text-slate-900 dark:hover:text-slate-300 transition-colors duration-300 cursor-pointer" />
+              <Github className="w-5 h-5 text-slate-600 dark:text-white hover:text-slate-900 dark:hover:text-slate-300 transition-colors duration-300 cursor-pointer" />
             </a>
-            <Twitter className="text-slate-600 dark:text-white hover:text-slate-900 dark:hover:text-slate-300 transition-colors duration-300 cursor-pointer" />
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-              <Instagram className="text-slate-600 dark:text-white hover:text-slate-900 dark:hover:text-slate-300 transition-colors duration-300 cursor-pointer" />
+
+            <a
+              href="https://twitter.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Twitter"
+              className="hover:scale-110 transition-transform duration-200"
+            >
+              <Twitter className="w-5 h-5 text-slate-600 dark:text-white hover:text-slate-900 dark:hover:text-slate-300 transition-colors duration-300 cursor-pointer" />
+            </a>
+
+            <a
+              href="https://instagram.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className="hover:scale-110 transition-transform duration-200"
+            >
+              <Instagram className="w-5 h-5 text-slate-600 dark:text-white hover:text-slate-900 dark:hover:text-slate-300 transition-colors duration-300 cursor-pointer" />
+            </a>
+
+            <a
+              href="https://linkedin.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              className="hover:scale-110 transition-transform duration-200"
+            >
+              <FaLinkedin className="w-5 h-5 text-slate-600 dark:text-white hover:text-slate-900 dark:hover:text-slate-300 transition-colors duration-300 cursor-pointer" />
             </a>
           </div>
         </div>
-
       </div>
     </footer>
   );
