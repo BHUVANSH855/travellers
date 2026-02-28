@@ -45,7 +45,7 @@ export default function FeedbackPage() {
         </h1>
 
         <p className="mt-3 text-center text-slate-600 dark:text-slate-400">
-          We'd love to hear your suggestions, experiences, or issues.
+          {"We'd love to hear your suggestions, experiences, or issues."}
         </p>
 
         <form
