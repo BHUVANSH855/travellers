@@ -6,6 +6,7 @@
   --radius: 0.75rem;
 }
 
+/* ================= Ken Burns ================= */
 @keyframes kenburns {
   0% {
     transform: scale(1) translate(0, 0);
@@ -27,8 +28,8 @@
   transform: translateZ(0);
 }
 
+/* ================= Slow Bounce ================= */
 @keyframes bounceSlow {
-
   0%,
   100% {
     transform: translateY(0);
@@ -43,6 +44,7 @@
   animation: bounceSlow 2.5s infinite ease-in-out;
 }
 
+/* ================= Floating ================= */
 @keyframes floatSlow {
   0% {
     transform: translateY(-50%) translateX(0px);
@@ -57,6 +59,7 @@
   }
 }
 
+/* ================= Image Pan (Process Cards) ================= */
 @keyframes imagePan {
   0% {
     transform: scale(1.12) translateX(0%);

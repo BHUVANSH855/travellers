@@ -10,10 +10,13 @@ import AuthSessionProvider from "@/components/session-provider";
 import { auth } from "@/lib/auth";
 import { ThemeProvider } from "@/state/theme";
 import { Wrapper } from "@/components/theme-wrapper";
+import FloatingActions from "@/components/FloatingActions";
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+});
 
-const inter = Inter({ subsets: ["latin"] });
-
-/* ✅ MUST be at top level */
+/* ✅ Force dynamic rendering */
 export const dynamic = "force-dynamic";
 
 export const viewport = {
@@ -41,27 +44,27 @@ export default async function RootLayout({
 }: {
   children: ReactNode;
 }) {
-  const session = await auth(); // ✅ restored
+  const session = await auth();
 
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${inter.className} bg-white dark:bg-gray-950 dark:text-white transition-colors duration-300`}>
         <ThemeProvider>
           <Wrapper>
             <AuthSessionProvider session={session}>
-              <div className="flex min-h-screen flex-col bg-white dark:bg-gray-950 dark:text-white transition-colors duration-150">
+              <div className="flex min-h-screen flex-col">
+                {/* Header */}
+                <SiteHeader />
 
-                <SiteHeader session={session} />
-
-                <main className="flex-1 pt-2 pb-16">
+                {/* Main Content */}
+                <main className="flex-1 pt-6 pb-20">
                   {children}
                 </main>
 
+                {/* Footer and Utilities */}
                 <SiteFooter />
-                <ScrollToTop />
-                <Chatbot />
-                <PWAProvider />
-
+                <FloatingActions />
+                  <PWAProvider />
               </div>
             </AuthSessionProvider>
           </Wrapper>

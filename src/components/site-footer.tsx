@@ -1,17 +1,18 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { Github, Twitter, Instagram, Plane } from "lucide-react";
 
 export default function SiteFooter() {
   return (
-    <footer className="relative overflow-hidden text-white">
+    <footer className="relative overflow-hidden text-slate-800 dark:text-white transition-colors duration-300">
 
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#06132a] via-[#071a3d] to-[#06132a]" />
+      {/* Background with theme-aware gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-slate-100 to-slate-50 dark:from-[#06132a] dark:via-[#071a3d] dark:to-[#06132a] transition-colors duration-500" />
 
-      {/* World Map */}
-      <div className="absolute inset-0 opacity-25 pointer-events-none">
+      {/* World Map with theme-aware opacity */}
+      <div className="absolute inset-0 opacity-10 dark:opacity-25 pointer-events-none">
         <Image
           src="/worldMap.png"
           alt="World Map"
@@ -33,13 +34,12 @@ export default function SiteFooter() {
               width={38}
               height={38}
             />
-            <h2 className="text-3xl tracking-tight">
+            <h2 className="text-3xl tracking-tight transition-colors duration-300">
               <span className="font-semibold">travellersmeet</span>
-
             </h2>
           </div>
 
-          <p className="mt-4 text-gray-300 max-w-2xl mx-auto text-base leading-relaxed">
+          <p className="mt-4 text-slate-600 dark:text-gray-300 max-w-2xl mx-auto text-base leading-relaxed transition-colors duration-300">
             Connect with verified travellers, discover shared journeys,
             and explore the world together.
           </p>
@@ -48,41 +48,79 @@ export default function SiteFooter() {
         {/* Columns */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-16 text-base">
 
+          {/* Explore */}
           <div>
-            <h3 className="font-semibold mb-3">Explore</h3>
-            <ul className="space-y-2 text-gray-300">
-              <li>Find Travellers</li>
-              <li>Safety Center</li>
+            <h3 className="font-semibold mb-3 transition-colors duration-300">Explore</h3>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-300 transition-colors duration-300">
+              <li>
+                <Link href="/demo-routes" className="hover:text-slate-900 dark:hover:text-white transition-colors">
+                  Find Travellers
+                </Link>
+              </li>
+              <li>
+                <Link href="/about" className="hover:text-slate-900 dark:hover:text-white transition-colors">
+                  Safety Center
+                </Link>
+              </li>
             </ul>
           </div>
 
+          {/* Community */}
           <div>
-            <h3 className="font-semibold mb-3">Community</h3>
-            <ul className="space-y-2 text-gray-300">
-              <li>GitHub Repo ⭐</li>
-              <li>Contributors</li>
+            <h3 className="font-semibold mb-3 transition-colors duration-300">Community</h3>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-300 transition-colors duration-300">
+              <li>
+                <a
+                  href="https://github.com/singh-odyssey/travellers"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-slate-900 dark:hover:text-white transition-colors"
+                >
+                  GitHub Repo ⭐
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://github.com/singh-odyssey/travellers/graphs/contributors"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-slate-900 dark:hover:text-white transition-colors"
+                >
+                  Contributors
+                </a>
+              </li>
             </ul>
           </div>
 
+          {/* Legal */}
           <div>
-            <h3 className="font-semibold mb-3">Legal</h3>
-            <ul className="space-y-2 text-gray-300">
-              <li>Privacy Policy</li>
-              <li>Terms & Conditions</li>
+            <h3 className="font-semibold mb-3 transition-colors duration-300">Legal</h3>
+            <ul className="space-y-2 text-slate-600 dark:text-gray-300 transition-colors duration-300">
+              <li>
+                <Link href="/privacy" className="hover:text-slate-900 dark:hover:text-white transition-colors">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/terms" className="hover:text-slate-900 dark:hover:text-white transition-colors">
+                  Terms & Conditions
+                </Link>
+              </li>
             </ul>
           </div>
 
+          {/* Newsletter */}
           <div>
-            <h3 className="font-semibold mb-3">Newsletter</h3>
-            <p className="text-gray-300 mb-3">Email Address</p>
+            <h3 className="font-semibold mb-3 transition-colors duration-300">Newsletter</h3>
+            <p className="text-slate-600 dark:text-gray-300 mb-3 transition-colors duration-300">Email Address</p>
 
             <div className="flex gap-3">
               <input
                 type="email"
                 placeholder="Email address"
-                className="w-full rounded-lg bg-white/10 border border-white/20 px-4 py-2 backdrop-blur-sm text-white placeholder-gray-400 focus:outline-none focus:border-white/40"
+                className="w-full rounded-lg bg-slate-200/50 dark:bg-white/10 border border-slate-300 dark:border-white/20 px-4 py-2 backdrop-blur-sm text-slate-900 dark:text-white placeholder-slate-500 dark:placeholder-gray-400 focus:outline-none focus:border-slate-400 dark:focus:border-white/40 transition-all duration-300"
               />
-              <button className="bg-white text-black px-5 rounded-lg font-medium hover:bg-gray-200 transition">
+              <button className="bg-slate-900 dark:bg-white text-white dark:text-black px-5 rounded-lg font-medium hover:bg-slate-800 dark:hover:bg-gray-200 transition-colors duration-300">
                 Go
               </button>
             </div>
@@ -91,18 +129,23 @@ export default function SiteFooter() {
 
         {/* Divider */}
         <div className="my-12 relative flex items-center justify-center">
-          <div className="absolute w-full border-t border-dashed border-white/30" />
-          <div className="relative bg-[#071a3d] px-2">
-            <Plane size={16} />
+          <div className="absolute w-full border-t border-dashed border-slate-300 dark:border-white/30" />
+          <div className="relative bg-slate-50 dark:bg-[#071a3d] px-2 transition-colors duration-500">
+            <Plane size={16} className="text-slate-400 dark:text-white" />
           </div>
         </div>
 
         {/* Bottom Row */}
-        <div className="mt-6 flex flex-col md:flex-row items-center justify-between text-gray-300 text-sm gap-6">
-
-
+        <div className="mt-6 flex flex-col md:flex-row items-center justify-between text-slate-500 dark:text-gray-300 text-sm gap-6 transition-colors duration-300">
           <div>
-            © 2026 TravellersMeet. Privacy · Terms
+            © 2026 TravellersMeet.{" "}
+            <Link href="/privacy" className="hover:text-slate-900 dark:hover:text-white transition-colors">
+              Privacy
+            </Link>{" "}
+            ·{" "}
+            <Link href="/terms" className="hover:text-slate-900 dark:hover:text-white transition-colors">
+              Terms
+            </Link>
           </div>
 
           <div>
@@ -110,9 +153,17 @@ export default function SiteFooter() {
           </div>
 
           <div className="flex gap-8">
-            <Github className="hover:text-white transition cursor-pointer" />
-            <Twitter className="hover:text-white transition cursor-pointer" />
-            <Instagram className="hover:text-white transition cursor-pointer" />
+            <a
+              href="https://github.com/singh-odyssey/travellers"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Github className="text-slate-600 dark:text-white hover:text-slate-900 dark:hover:text-slate-300 transition-colors duration-300 cursor-pointer" />
+            </a>
+            <Twitter className="text-slate-600 dark:text-white hover:text-slate-900 dark:hover:text-slate-300 transition-colors duration-300 cursor-pointer" />
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+              <Instagram className="text-slate-600 dark:text-white hover:text-slate-900 dark:hover:text-slate-300 transition-colors duration-300 cursor-pointer" />
+            </a>
           </div>
         </div>
 
